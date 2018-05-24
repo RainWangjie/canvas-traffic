@@ -30,34 +30,28 @@ let roads = [],
 const roadConfig = [
   {
     x: 0,
-    y: h / 2 - 20,
+    y: h / 2 - 60,
     width: w,
-    height: 40,
+    height: 120,
     direction: 'h',
-    num: 1
+    num: 3
   },
   {
-    x: w / 2 - 20,
+    x: w / 2 - 80,
     y: 0,
-    width: 40,
+    width: 160,
     height: h,
+    direction: 'v',
+    num: 4
+  },
+  {
+    x: 1050,
+    y: h / 2 - 60,
+    width: 40,
+    height: h - (h / 2 - 60),
     direction: 'v',
     num: 1
   }
-  // {
-  //   x: 0,
-  //   y: 200,
-  //   width: w,
-  //   height: 40,
-  //   direction: 'h'
-  // },
-  // {
-  //   x: 1050,
-  //   y: h / 2 - 40,
-  //   width: 40,
-  //   height: h - (h / 2 - 40),
-  //   direction: 'v'
-  // },
   // {
   //   x: 450,
   //   y: 200,

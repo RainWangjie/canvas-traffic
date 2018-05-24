@@ -118,10 +118,33 @@ class Intersection {
     ctx.stroke();
   }
 
-  // 停止线(缺多车道区分)
-  drawStopLine(ctx, x, y, w, h) {
-    ctx.fillStyle = '#A09383';
+  // 停止线
+  drawStopLine(road, ctx, x, y, w, h) {
+    ctx.fillStyle = color.solidLine;
     ctx.fillRect(x, y, w, h);
+
+    const { dir, num } = road;
+    if (num === 1) return;
+
+    let space = Math.max(w, h) / num;
+
+    // 虚线上叠加实线分割线
+    for (let i = 1; i < num; i++) {
+      if (dir === 'left') {
+        ctx.fillRect(x - 30, y + space * i - 2, 30, 2);
+      }
+      if (dir === 'right') {
+        ctx.fillRect(x, y + space * i - 2, 30, 2);
+      }
+      if (dir === 'top') {
+        ctx.fillRect(x + space * i - 2, y - 30, 2, 30);
+      }
+      if (dir === 'bottom') {
+        ctx.fillRect(x + space * i - 2, y, 2, 30);
+      }
+      ctx.fill();
+      ctx.restore();
+    }
   }
 
   // 信号灯
@@ -169,6 +192,7 @@ class Intersection {
         this.y + this.height
       );
       this.drawStopLine(
+        { dir: 'left', num: this.lightNumH },
         ctx,
         this.x - 22,
         this.height / 2 + this.y - 1,
@@ -194,6 +218,7 @@ class Intersection {
         this.y + this.height
       );
       this.drawStopLine(
+        { dir: 'right', num: this.lightNumH },
         ctx,
         this.x + this.width + 22,
         this.y,
@@ -218,7 +243,14 @@ class Intersection {
         this.x + this.width,
         this.y - 12
       );
-      this.drawStopLine(ctx, this.x, this.y - 21, this.width / 2 + 1, 2);
+      this.drawStopLine(
+        { dir: 'top', num: this.lightNumV },
+        ctx,
+        this.x,
+        this.y - 21,
+        this.width / 2 + 1,
+        2
+      );
       this.drawTrafficLight(
         { dir: 'top', num: this.lightNumV, color: this.top },
         ctx,
@@ -238,6 +270,7 @@ class Intersection {
         this.y + this.height + 12
       );
       this.drawStopLine(
+        { dir: 'bottom', num: this.lightNumV },
         ctx,
         this.x + this.width - this.width / 2 - 1,
         this.y + this.height + 20,
