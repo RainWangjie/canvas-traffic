@@ -145,7 +145,7 @@ class Car {
   // 车辆在路口转弯
   gen_dir(inter) {
     let c = this;
-    // 车辆已删除
+    // 车辆已通过路口
     if (c.dd) return;
 
     var rand_dir = Math.random() * 10;

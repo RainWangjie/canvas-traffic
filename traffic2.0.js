@@ -30,25 +30,25 @@ let roads = [],
 const roadConfig = [
   {
     x: 0,
-    y: h / 2 - 60,
+    y: h / 2 - 40,
     width: w,
-    height: 120,
+    height: 80,
     direction: 'h',
-    num: 3
+    num: 2
   },
   {
-    x: w / 2 - 80,
+    x: w / 2 - 40,
     y: 0,
-    width: 160,
+    width: 80,
     height: h,
     direction: 'v',
-    num: 4
+    num: 2
   },
   {
     x: 1050,
-    y: h / 2 - 60,
+    y: h / 2 - 40,
     width: 40,
-    height: h - (h / 2 - 60),
+    height: h - (h / 2 - 40),
     direction: 'v',
     num: 1
   }
@@ -173,12 +173,12 @@ function drive_cars() {
         if (dc == true) {
           // 车辆停止
           c.s = 0;
-          for (var k = 0; k < intersections_arr.length; k++) {
-            var inter = intersections_arr[k];
+          // 两车道，车辆放置到较少车辆车道
+          if (inter.height === 80) {
+            for (var k = 0; k < intersections_arr.length; k++) {
+              var inter = intersections_arr[k];
 
-            if (inter.y + inter.height > c.y && inter.y < c.y) {
-              // 两车道，车辆放置到较少车辆车道
-              if (inter.height === 80) {
+              if (inter.y + inter.height > c.y && inter.y < c.y) {
                 var lc = 0;
                 var ld = 0;
                 for (var v = 0; v < carCount; v++) {
@@ -239,11 +239,11 @@ function drive_cars() {
         var dc = c.check_distance(c2, '-y');
         if (dc == true) {
           c.s = 0;
-          for (var k = 0; k < intersections_arr.length; k++) {
-            var inter = intersections_arr[k];
-            if (inter.x + inter.width > c.x && inter.x < c.x) {
-              //this is road
-              if (inter.width == 80) {
+          if (inter.width == 80) {
+            for (var k = 0; k < intersections_arr.length; k++) {
+              var inter = intersections_arr[k];
+              if (inter.x + inter.width > c.x && inter.x < c.x) {
+                //this is road
                 var lc = 0;
                 var ld = 0;
                 for (var v = 0; v < cars.length; v++) {
@@ -302,11 +302,11 @@ function drive_cars() {
         var dc = c.check_distance(c2, 'y');
         if (dc == true) {
           c.s = 0;
-          for (var k = 0; k < intersections_arr.length; k++) {
-            var inter = intersections_arr[k];
-            if (inter.x + inter.width > c.x && inter.x < c.x) {
-              //this is road
-              if (inter.width == 80) {
+          if (inter.width == 80) {
+            for (var k = 0; k < intersections_arr.length; k++) {
+              var inter = intersections_arr[k];
+              if (inter.x + inter.width > c.x && inter.x < c.x) {
+                //this is road
                 var lc = 0;
                 var ld = 0;
                 for (var v = 0; v < cars.length; v++) {
@@ -365,11 +365,11 @@ function drive_cars() {
         var dc = c.check_distance(c2, '-x');
         if (dc == true) {
           c.s = 0;
-          for (var k = 0; k < intersections_arr.length; k++) {
-            var inter = intersections_arr[k];
-            if (inter.y + inter.height > c.y && inter.y < c.y) {
-              //this is road
-              if (inter.height == 80) {
+          if (inter.height == 80) {
+            for (var k = 0; k < intersections_arr.length; k++) {
+              var inter = intersections_arr[k];
+              if (inter.y + inter.height > c.y && inter.y < c.y) {
+                //this is road
                 var lc = 0;
                 var ld = 0;
                 for (var v = 0; v < cars.length; v++) {
