@@ -2,6 +2,13 @@
 
  源码来源[codepen](https://codepen.io/motorlatitude/pen/grdtj)
 
+## 预览
+
+`node`环境，全局安装`parcel`
+
+* `parcel traffic2.0.html` 预览改造完成页面
+* `parcel traffic.html`预览原作者页面
+
 ## 绘制对象与流程
 
  覆盖式 draw
